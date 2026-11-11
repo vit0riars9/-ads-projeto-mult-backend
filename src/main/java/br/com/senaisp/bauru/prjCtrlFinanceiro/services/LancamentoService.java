@@ -27,14 +27,19 @@ public class LancamentoService {
         return repository.findById(id).orElse(null);
     }
     
-    public Lancamento atualizar(Long id, Lancamento categoria) {
-        Lancamento categoriaBanco = repository.findById(id).orElse(null);
-        if (categoriaBanco == null) {
+    public Lancamento atualizar(Long id, Lancamento lancamento) {
+        Lancamento lancamentoBanco = repository.findById(id).orElse(null);
+        if (lancamentoBanco == null) {
             return null;
         }
+        lancamentoBanco.setId(lancamento.getId());
         lancamentoBanco.setDescricao(lancamento.getDescricao());
-        lancamentoBanco.setTipo(lancamento.getTipo());
-        lancamentoBanco.setAtiva(lancamento.getAtiva());
+        lancamentoBanco.setValor(lancamento.getValor());
+        lancamentoBanco.setDataLancamento(lancamento.getDataLancamento());
+        lancamentoBanco.setObservacao(lancamento.getObservacao());
+        lancamentoBanco.setCategoria(lancamento.getCategoria());
+        lancamentoBanco.setUsuario(lancamento.getUsuario());
+   
         return repository.save(lancamentoBanco);
     }
 
